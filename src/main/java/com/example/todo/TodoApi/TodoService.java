@@ -21,4 +21,9 @@ public class TodoService {
     CustomResponse<List<Todo>> response = new CustomResponse<List<Todo>>(true, 200, message, todo);
     return response;
   }
+
+  public CustomResponse<Todo>addNewTodo(Todo todo) {
+    Todo new_todo = this.todoRepository.save(todo);
+    return new CustomResponse<Todo>(true, 201, "Todo Created Successfully", new_todo);
+  }
 }

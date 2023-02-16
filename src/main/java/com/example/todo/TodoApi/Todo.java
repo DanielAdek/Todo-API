@@ -1,9 +1,9 @@
 package com.example.todo.TodoApi;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,10 +19,10 @@ public class Todo {
   private String id;
   private String item;
   private Boolean completed;
-  @CreatedDate
-  private LocalDate createdAt;
-  @LastModifiedDate
-  private LocalDate updatedAt;
+  @CreationTimestamp
+  private LocalDateTime createdAt;
+  @UpdateTimestamp
+  private LocalDateTime updatedAt;
 
   public Todo() {}
 
@@ -55,11 +55,11 @@ public class Todo {
     this.completed = completed;
   }
 
-  public LocalDate getCreatedAt() {
+  public LocalDateTime getCreatedAt() {
     return this.createdAt;
   }
 
-  public LocalDate getUpdatedAt() {
+  public LocalDateTime getUpdatedAt() {
     return this.updatedAt;
   }
 
