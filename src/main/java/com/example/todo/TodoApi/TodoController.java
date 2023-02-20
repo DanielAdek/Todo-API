@@ -32,15 +32,12 @@ public class TodoController {
   }
 
   @PutMapping("/{todoId}")
-  public CustomResponse<Todo>editTodo(
-    @PathVariable("todoId") UUID todoId,
-    @RequestBody() Todo todo
-    ) {
-      return this.todoService.updateTodo(todoId, todo);
-    }
+  public CustomResponse<Todo>editTodo(@PathVariable("todoId") UUID todoId, @RequestBody() Todo todo) {
+    return this.todoService.updateTodo(todoId, todo);
+  }
 
   @DeleteMapping(path = "{todoId}")
-  public CustomResponse<Todo>removeTodo(@PathVariable("todoId") UUID todoId) {
+  public CustomResponse<?>removeTodo(@PathVariable("todoId") UUID todoId) {
     return this.todoService.delTodo(todoId);
   }
 }
