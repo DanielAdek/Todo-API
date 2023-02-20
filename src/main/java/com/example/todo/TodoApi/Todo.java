@@ -2,6 +2,8 @@ package com.example.todo.TodoApi;
 
 import java.time.LocalDateTime;
 
+import java.util.UUID;
+
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -16,7 +18,7 @@ import jakarta.persistence.Table;
 public class Todo {
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
-  private String id;
+  private UUID id;
   private String item;
   private Boolean completed;
   @CreationTimestamp
@@ -31,11 +33,11 @@ public class Todo {
     this.completed = completed;
   }
 
-  public String getId() {
+  public UUID getId() {
     return this.id;
   }
 
-  public void setId(String id) {
+  public void setId(UUID id) {
     this.id = id;
   }
 
