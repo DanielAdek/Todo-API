@@ -33,18 +33,21 @@ public class TodoService {
   }
 
   @Transactional
-  public CustomResponse<Todo>updateTodo(UUID id, String item, Boolean completed) {
-    Todo todo = this.todoRepository.findById(id).orElseThrow(() -> new IllegalStateException("Todo not found"));
+  public CustomResponse<Todo>updateTodo(UUID id, Todo todo) {
+    Todo todoExist = this.todoRepository.findById(id).orElseThrow(() -> new IllegalStateException("Todo not found"));
 
-    if (item != null & item.length() > 0 & !Objects.equals(item, todo.getItem()) ) {
-      todo.setItem(item);
+    String item = todo.getItem();
+    Boolean completed = todo.getCompleted();
+
+    if (item != null) {
+      if (item.length() > 0 & !Objects.equals(item, todoExist.getItem())) todoExist.setItem(item);
     }
 
     if (completed != null) {
-      todo.setCompleted(completed);
+      todoExist.setCompleted(completed);
     }
 
-    return new CustomResponse<Todo>(true, 200, "Todo modified", todo);
+    return new CustomResponse<Todo>(true, 200, "Todo modified", todoExist);
   }
   
   public CustomResponse<Todo>delTodo(UUID id) {

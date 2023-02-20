@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -32,13 +31,12 @@ public class TodoController {
     return this.todoService.addNewTodo(todo);
   }
 
-  @PutMapping(path="{todoId}")
+  @PutMapping("/{todoId}")
   public CustomResponse<Todo>editTodo(
     @PathVariable("todoId") UUID todoId,
-    @RequestParam(required = false) String item,
-    @RequestParam(required = false) Boolean completed
+    @RequestBody() Todo todo
     ) {
-      return this.todoService.updateTodo(todoId, item, completed);
+      return this.todoService.updateTodo(todoId, todo);
     }
 
   @DeleteMapping(path = "{todoId}")
